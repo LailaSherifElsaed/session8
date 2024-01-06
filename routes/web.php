@@ -23,6 +23,10 @@ Route::get('test_home', function () {
 
 Route::get('about', [ExampleController::class, 'about'])->name('about');
 Route::get('services', [ExampleController::class, 'show_services'])->name('services');
-Route::get('guards', [ExampleController::class, 'show_guards'])->name('guards');
+Route::get('guards', [ExampleController::class, 'show_guards'])->middleware('verified')->name('guards');
 Route::get('contactUs', [ExampleController::class, 'contactUs'])->name('contactUs');
 
+
+Auth::routes(['verify'=>true]);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
