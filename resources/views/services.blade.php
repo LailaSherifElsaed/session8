@@ -203,3 +203,6 @@
   <!-- end service section -->
 
 @endsection
+@section('title')
+Services
+@endsection

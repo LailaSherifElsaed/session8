@@ -17,15 +17,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('test_home', function () {
-    return view('test_home');
-})->name('test_home');
 
-Route::get('about', [ExampleController::class, 'about'])->name('about');
-Route::get('services', [ExampleController::class, 'show_services'])->name('services');
-Route::get('guards', [ExampleController::class, 'show_guards'])->middleware('verified')->name('guards');
-Route::get('contactUs', [ExampleController::class, 'contactUs'])->name('contactUs');
 
+Route::group(
+    [
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+    ], function(){ 
+        Route::get('test_home', [ExampleController::class, 'home'])->name('test_home');
+        Route::get('contactUs', [ExampleController::class, 'contactUs'])->name('contactUs');
+        Route::get('about', [ExampleController::class, 'about'])->name('about');
+        Route::get('services', [ExampleController::class, 'show_services'])->name('services');
+        Route::get('guards', [ExampleController::class, 'show_guards'])->middleware('verified')->name('guards');
+    });
 
 Auth::routes(['verify'=>true]);
 

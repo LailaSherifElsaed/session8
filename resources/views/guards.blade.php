@@ -70,3 +70,6 @@
 
   <!-- end team section -->
 @endsection
+@section('title')
+Guards
+@endsection

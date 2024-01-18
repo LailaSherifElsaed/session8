@@ -1,4 +1,5 @@
 @extends('layouts.pages')
+
 @section('content')
  <!-- about section -->
 
@@ -40,3 +41,7 @@
   <!-- end about section -->
 
 @endsection
+@section('title')
+About
+@endsection
+
